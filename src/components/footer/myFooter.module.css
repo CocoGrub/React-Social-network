@@ -1,0 +1,6 @@
+.myFooter{
+    text-align: center;
+    grid-area: footer;
+    background-color: darkgray;
+    border-bottom: 1px solid gray;
+  }

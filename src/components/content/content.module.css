@@ -1,0 +1,9 @@
+.content{
+    grid-area: main;
+    background-color: rosybrown;
+  }
+  
+  .content{
+      display: flex;
+      flex-direction: column;
+  }
