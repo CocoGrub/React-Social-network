@@ -1,29 +1,30 @@
 import React from 'react';
 import './App.css';
 import Myhead from './components/header/header'
-import Navigate from './components/navigation/navigate'
-import Commentary from './components/content/commentary'
-import Profile from './components/content/profile/profile'
+import Navigation from './components/navigation/navigation'
+import MessagePage from './components/MessagesPage/messagePage'
+import ProfilePage from './components/ProfilePage/ProfilePage'
 import Myfooter from './components/footer/myFooter'
 import {BrowserRouter,Route} from 'react-router-dom'
 
 
-function App() {
+
+
+function App(props) {
+
   return (
-
-    <div className="App">
     <BrowserRouter>
+    <div className="App">
       <Myhead/>
-      <Navigate/>
-      <div className='content'>
-    <Route path='/comments' component={Commentary}></Route>
-    <Route exact path='/profile' component={Profile}></Route>
+      <Navigation/>
+        <div className='content'>
+        <Route path='/dialog' render={()=><MessagePage messagesPage={props.state.messagesPage}  />}/>
+
+        <Route  path='/profile' render = {()=><ProfilePage method={props.method} profile={props.state.profilePage}/> }/>
+      </div>
+        <Myfooter/>
     </div>
-
-      <Myfooter/>
-
     </BrowserRouter>
-    </div>
   );
 }
 

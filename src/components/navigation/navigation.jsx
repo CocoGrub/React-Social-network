@@ -7,7 +7,7 @@ export default function navigate(){
         <p>my friend</p>
         <p>my photos</p>
         <p>my settings</p>
+        <p><NavLink activeClassName={classes.active} to='/dialog'>Общение</NavLink></p>
         <p><NavLink activeClassName={classes.active} to='/profile'>profile</NavLink></p>
-        <p><NavLink activeClassName={classes.active} to='/comments'>profile</NavLink></p>
     </div>)
 }
