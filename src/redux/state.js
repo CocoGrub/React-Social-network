@@ -1,4 +1,7 @@
-import Rerender from '../index'
+let Rerender=()=>{
+    console.log('start');
+    
+}
 const state={
     messagesPage:{
         names:[
@@ -18,21 +21,36 @@ const state={
             {name:'john',id:2,likes:2,post:'mazda'},
             {name:'gena',id:3,likes:2,post:'bmw'},
             {name:'GHalya',id:4,likes:2,post:'sprooot'}],
-            }
+
+        defaultPostValue:'post here'    
+        },
     
+        addPost:function(post){
+            if(post){
+                state.profilePage.posts.push({
+                    name:'Volodya',
+                    id:6,
+                    likes:0,
+                    post:post
+                })
+            }
+            
+        Rerender(state)
+        },
+
+        changeInput:function(post){
+            if(post){
+                state.profilePage.defaultPostValue=post
+            }
+            Rerender(state)
+        }
+
 }
 
 
+export const subscribe=(watcher)=>{
+    Rerender=watcher
 
- export const change=(post)=>{
-    state.profilePage.posts.push({
-        name:'Volodya',
-        id:6,
-        likes:0,
-        post:post
-    })
-Rerender()
 }
-
 
 export default state

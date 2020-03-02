@@ -10,14 +10,17 @@ export default function Contacts(props){
     console.log(props);
     const textRef = React.createRef();
     
-// return(<p>d</p>)
+    const changeTextArea = ()=>{
+        const text =textRef.current.value
+        props.data.change(text)
+    }
 
     return (<div className={classes.post}>
         <div>
         <p>Add Post</p>
-        <textarea ref={textRef}></textarea>
+        <textarea  defaultValue={props.data.defautltValue} ref={textRef} onChange={changeTextArea}></textarea>
         <button onClick={()=>{
-            props.data.method(textRef.current.value); console.log(props.data);
+            props.data.addPost(textRef.current.value); 
          }}>post!</button>
         
         </div>

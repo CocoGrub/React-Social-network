@@ -11,6 +11,7 @@ import {BrowserRouter,Route} from 'react-router-dom'
 
 
 function App(props) {
+console.log(props);
 
   return (
     <BrowserRouter>
@@ -20,7 +21,7 @@ function App(props) {
         <div className='content'>
         <Route path='/dialog' render={()=><MessagePage messagesPage={props.state.messagesPage}  />}/>
 
-        <Route  path='/profile' render = {()=><ProfilePage method={props.method} profile={props.state.profilePage}/> }/>
+        <Route  path='/profile' render = {()=><ProfilePage change={props.state.changeInput} defautltValue={props.state.profilePage.defaultPostValue} addPost={props.state.addPost} profile={props.state.profilePage}/> }/>
       </div>
         <Myfooter/>
     </div>
