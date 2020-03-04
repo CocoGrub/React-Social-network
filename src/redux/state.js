@@ -1,5 +1,5 @@
-
-
+import ProfilePageReducer from './ProfileReducer'
+import MessagePageReducer from './MessagePageReducer'
 const store={
     _state:{
         messagesPage:{
@@ -7,7 +7,8 @@ const store={
                 {id:1,name:'vanya'},
                 {id:2,name:'john'},
                 {id:3,name:'gena'},
-                {id:4,name:'GHalya'}],
+                {id:4,name:'GHalya'},
+                {id:5,name:'Monk'}],
             messages:[
                 {id:1,message:'privet',},
                 {id:2,message:'how are u'},
@@ -30,28 +31,15 @@ const store={
     },
 
      _Rerender(){
-        console.log('start');
+        console.log('rerender');
         
     },
     
     Subscribe(watcher){
-        this.Rerender=watcher
+        this._Rerender=watcher
     
     },
-          
-    _addPost(post){
-        if(post){
-            this._state.profilePage.posts.push({
-                name:'Volodya',
-                id:6,
-                likes:0,
-                post:post
-            })
-        }
-        
-    this._Rerender(this._state)
-    },
-
+    
     changeInput(post){
         if(post){
             this._state.profilePage.defaultPostValue=post
@@ -61,43 +49,12 @@ const store={
         this._Rerender(this._state)
     },
 
-
-    dispatch(action){
-        if(action.type==="ADD-POST"){
-
-            
-                this._state.profilePage.posts.push({
-                    name:'Volodya',
-                    id:6,
-                    likes:0,
-                    post:action.post
-                })
-                this.Rerender(this._state)
-        }else if(action.type==="CHANGE-INPUT"){
-        
-                this._state.profilePage.defaultPostValue=action.defaultPostValue
-            
-            this._Rerender(this._state)
-
-    }
-}
-
+    dispatch(action){ // only dispacth change state
+        this._state.profilePage=ProfilePageReducer(this._state.profilePage,action)
+        this._state.messagesPage=MessagePageReducer(this._state.messagesPage,action)
+        this._Rerender(this._state)}
 }
 
 export default store
 
 
-
-const addPost="ADD-POST"
-const changeInput ="CHANGE-INPUT"
-
-//эксшн криэйторы
-
-export const AddPostActionCreator=(text)=>{
-    return{type:addPost,post:text}
-}
-
-
-export const ChangeInputActionCreator=(text)=>{
-    return{type:changeInput,defaultPostValue:text}
-}

@@ -2,22 +2,21 @@ import React from 'react';
 import {NavLink} from 'react-router-dom'
 import classes from './post.module.css'
 
-import {AddPostActionCreator,ChangeInputActionCreator} from '../../../redux/state'
+import {AddPostActionCreator,ChangeInputActionCreator} from '../../../redux/ProfileReducer'
 
 
 export default function Contacts(props){
 
-
-    const textRef = React.createRef();
+    const textRef = React.createRef()
     
-    const changeTextArea = ()=>{
+    const addPost = ()=>{
         const text =textRef.current.value
         props.store.dispatch(AddPostActionCreator(text));
     }
 
-    const logger=function(){
-        const text =textRef.current.value
-        props.store.dispatch(ChangeInputActionCreator(text));
+    const logger=function(e){
+        const text = e.target.value
+         props.store.dispatch(ChangeInputActionCreator(text));
         
     }
 
@@ -27,11 +26,10 @@ export default function Contacts(props){
         <div>
         <p>Add Post</p>
         
-        <textarea  defaultValue={data.profilePage.defaultPostValue} ref={textRef} 
-            onChange={logger
-        }></textarea>
+        <textarea  defaultValue={data.profilePage.defaultPostValue} ref={textRef}
+            onChange={(e)=>logger(e)}></textarea>
 
-        <button onClick={()=>{changeTextArea()}}>post!</button>
+        <button onClick={(e)=>{addPost(e)}}>post!</button>
         
         </div>
         

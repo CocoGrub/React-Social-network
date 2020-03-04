@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
-import store from './redux/state'
+import store from './redux/reduxStore'
 
 
 
@@ -22,4 +22,6 @@ serviceWorker.unregister();
 
 Rerender(store.getState())
 
-store.Subscribe(Rerender)
+store.subscribe(()=>{
+    Rerender(store.getState())
+})
