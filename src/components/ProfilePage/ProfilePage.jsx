@@ -10,7 +10,7 @@ console.log(props);
         <img alt='myPhoto'></img>
         <p>About me</p>
         <div>comments</div>
-        <Post data={props} ></Post>
+        <Post store={props.store} ></Post>
         </div>
         
     )

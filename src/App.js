@@ -19,9 +19,9 @@ console.log(props);
       <Myhead/>
       <Navigation/>
         <div className='content'>
-        <Route path='/dialog' render={()=><MessagePage messagesPage={props.state.messagesPage}  />}/>
+        <Route path='/dialog' render={()=><MessagePage store={props.store}  />}/>
 
-        <Route  path='/profile' render = {()=><ProfilePage change={props.state.changeInput} defautltValue={props.state.profilePage.defaultPostValue} addPost={props.state.addPost} profile={props.state.profilePage}/> }/>
+        <Route  path='/profile' render = {()=><ProfilePage store={props.store} /> }/>
       </div>
         <Myfooter/>
     </div>

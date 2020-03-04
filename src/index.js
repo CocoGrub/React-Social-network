@@ -3,13 +3,13 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
-import state,{subscribe} from './redux/state'
+import store from './redux/state'
 
 
 
-const Rerender=(props)=>{
+const Rerender=()=>{
 
-    ReactDOM.render(<App state={props} />, document.getElementById('root'));
+    ReactDOM.render(<App store={store} />, document.getElementById('root'));
 }
 
 
@@ -18,9 +18,8 @@ const Rerender=(props)=>{
 // Learn more about service workers: https://bit.ly/CRA-PWA
 serviceWorker.unregister();
 
-export default Rerender
 
 
-Rerender(state)
+Rerender(store.getState())
 
-subscribe(Rerender)
+store.Subscribe(Rerender)
