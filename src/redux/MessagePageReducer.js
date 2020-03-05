@@ -1,4 +1,3 @@
-
 const sendMessage ="SEND-MESSAGE"
 
 export const DialogActionCreator=(text)=>{ 

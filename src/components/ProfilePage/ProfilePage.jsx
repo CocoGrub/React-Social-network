@@ -1,5 +1,5 @@
 import React from 'react'
-import Post from './post/post'
+import PostContainer from './post/postContainer'
 import classes from './profilePage.module.css'
  const  ProfilePage =(props)=>{
 console.log(props);
@@ -10,7 +10,7 @@ console.log(props);
         <img alt='myPhoto'></img>
         <p>About me</p>
         <div>comments</div>
-        <Post store={props.store} ></Post>
+        <PostContainer store={props.store} ></PostContainer>
         </div>
         
     )
