@@ -1,11 +1,26 @@
 import React from 'react'
 
-export default function DialogItem(props){
-    console.log(props.names);
+const  DialogItem =(props)=>{
+    console.log(props);
     
-    const names = props.names.map((x,y)=>{
-        return <div key={y}>{x.name}</div>
-        })
+   const textRef = React.createRef()  
+    const sendMsg=()=>{
+            props.sendMessage(textRef.current.value)
+    }
+
+
+  
     
-    return(<div>{names}</div>)
+
+    const messages = props.messages.map((x,y)=>{
+
+        return <div key={y}>  <textarea ref={textRef} defaultValue={x.message}></textarea>
+        <button onClick={()=>{sendMsg()}}>send!</button></div>
+        
+    })
+    
+    return(<div>{messages}</div>)
 }
+
+
+export default DialogItem
