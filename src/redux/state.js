@@ -24,6 +24,7 @@ const store={
     
             defaultPostValue:'post here'    
             },
+            globals:{color:'gray'}
   
     },
     getState(){
