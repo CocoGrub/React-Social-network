@@ -7,7 +7,7 @@ import ProfilePage from './components/ProfilePage/ProfilePage'
 import Myfooter from './components/footer/myFooter'
 import SettingsContainer from './components/settings/settingContainer'
 import {Route} from 'react-router-dom'
-import MagicContext from './redux/reduxContext'
+import {Provider} from 'react-redux'
 
 
 
