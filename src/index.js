@@ -5,15 +5,15 @@ import App from './App';
 import * as serviceWorker from './serviceWorker';
 import store from './redux/reduxStore'
 import {BrowserRouter} from 'react-router-dom'
-import MagicContext from './redux/reduxContext'
+
 
 const Rerender=()=>{
     console.log(store.getState());
     
      ReactDOM.render(<BrowserRouter>
-       <MagicContext.Provider data={store.getState().globals}>
+   
       <App store={store} />    
-      </MagicContext.Provider>
+    
      </BrowserRouter>, document.getElementById('root'));
 
 }
