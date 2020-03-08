@@ -1,21 +1,27 @@
 import React from 'react';
-import DialogItemContainer from './dialogItem/dialogItemContainer'
-import classes from './messages.module.css'
+import Dialogs from './Dialogs/Dialogs'
 
 
-export default function Messages(props){
+const Messages=(props)=>{
 
 
-console.log(props);
+console.log('messagePage',props)
 
-const names= props.store.getState().messagesPage.names.map((i,k)=>{
-return(<div key={k}>{i.name}</div>)
-})
-
-return(<div className={classes.talk}>
-    <div><DialogItemContainer store={props.store}></DialogItemContainer></div>
-    <div> {names}</div>
-
-    </div>
-    )
+const addText=()=>{
+    props.sendMessage('kdk')
 }
+
+return(<div>
+        <h2>Очень важные Разговорчики</h2>
+
+        <button onClick={()=>{addText()}}>wwww</button>
+
+        
+        <Dialogs names={props.names}
+                messages={props.messages}
+                sendMessage={(text)=>{props.sendMessage(text)}}
+        />
+                    </div>)
+                            }
+
+export default Messages;

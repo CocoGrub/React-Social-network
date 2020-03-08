@@ -1,7 +1,8 @@
 const sendMessage ="SEND-MESSAGE"
 
-export const DialogActionCreator=(text)=>{ 
-    return{type:sendMessage,message:text}
+ export const DialogActionCreator=(text)=>{ 
+    
+    return{type:sendMessage,message:text }
 }
 
 const initialState={
@@ -19,9 +20,13 @@ const initialState={
     }
 
 const MessagePageReducer = (state=initialState,action)=>{
+    console.log(action);
     switch(action.type){
-        case sendMessage: state.messages.push({id:5,message:'hotdog'})
-            return state
+        case sendMessage: 
+        const myState={...state}
+        myState.messages = [...state.messages]
+        myState.messages.push({id:5,message:'hotdog'})
+            return myState
         default:return state
     }
 }

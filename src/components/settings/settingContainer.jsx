@@ -1,18 +1,31 @@
-import React from 'react';
-import MagicContext from '../../redux/reduxContext'
 import Settings from './Settings'
-const SettingsContainer = (props)=>{
-    console.log(props);
-    
-    return(<div>
-        <MagicContext.Consumer>
-        {data =>{
-           
-            return <Settings store={data}></Settings>
-        }
-        }
-        </MagicContext.Consumer>
-    </div>)
+import {connect} from 'react-redux'
+
+
+
+
+
+const mapStateToProps =(state)=>{
+    return{
+        color:state.globals.color
+    }
 }
+
+
+
+const MapDispatchToProps=(dispatch)=>{
+    return{
+
+    }
+}
+
+
+
+
+
+const SettingsContainer = connect(mapStateToProps,MapDispatchToProps)(Settings)
+
+
+
 
 export default SettingsContainer;

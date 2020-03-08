@@ -25,19 +25,20 @@ const initialState= {
     }
 
 const ProfilePageReducer = (state=initialState,action)=>{
-    
     switch(action.type){
         case addPost:
-            console.log(state,action);
-            state.posts.push({
+            const myState ={...state};
+            myState.posts=[...state.posts]
+            myState.posts.push({
                 name:'Volodya',
                 id:6,
                 likes:0,
                 post:action.post})
-        return state
+        return myState
         case changeInput:
-            state.defaultPostValue=action.defaultPostValue 
-        return state   
+            const myState1 = {...state}
+            myState1.defaultPostValue=action.defaultPostValue 
+        return myState1   
         default:return state}
     }
 

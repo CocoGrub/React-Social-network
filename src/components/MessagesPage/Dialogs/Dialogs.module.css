@@ -2,3 +2,6 @@
     display: grid;
     grid-template-columns: auto auto;
 }
+.el{
+    padding: 10px 0 0 10px;
+}

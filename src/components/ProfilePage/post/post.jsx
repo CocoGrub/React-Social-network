@@ -5,7 +5,8 @@ import classes from './post.module.css'
 
 
 export default function Post(props){
-
+    console.log(props);
+    
     const textRef = React.createRef()
     
     const addPost = ()=>{

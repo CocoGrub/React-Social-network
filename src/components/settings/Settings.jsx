@@ -3,11 +3,11 @@ import React from 'react';
 
 
 const Settings =(props)=>{
-    console.log(props.store.store.getState().globals.color);
+    console.log(props);
     
     return(<div>
 
-    <span>color is {props.store.store.getState().globals.color}</span>
+    <span>color is {props.color} </span>
 
     </div>)
 
