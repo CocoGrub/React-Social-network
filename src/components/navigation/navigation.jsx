@@ -4,7 +4,7 @@ import classes from './navigate.module.css'
 export default function navigate(){
     return(<div className='navigation'>
         <p>my page</p>
-        <p>my friend</p>
+        <p><NavLink activeClassName={classes.active} to='/myFriends'>my friends</NavLink></p>
         <p>my photos</p>
         <p><NavLink activeClassName={classes.active} to='/settings'>my settings</NavLink></p>
         <p><NavLink activeClassName={classes.active} to='/dialog'>Общение</NavLink></p>

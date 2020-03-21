@@ -5,7 +5,8 @@ import Navigation from './components/navigation/navigation'
 import DialogContainer from './components/MessagesPage/DialogContainer'
 import ProfilePage from './components/ProfilePage/ProfilePage'
 import Myfooter from './components/footer/myFooter'
-import SettingsContainer from './components/settings/settingContainer'
+import SettingsContainer from './components/SettingsPage/SettingsContainer'
+import Users from './components/UsersPage/UsersContainer'
 import {Route} from 'react-router-dom'
 
 
@@ -21,11 +22,9 @@ function App() {
       <Navigation/>
 
         <div className='content'>
-
-      <Route path='/settings' render={()=><SettingsContainer/>}/>
-
+        <Route path='/myFriends' render={()=><Users/>}/>
+        <Route path='/settings' render={()=><SettingsContainer/>}/>
         <Route path='/dialog' render={()=> <DialogContainer/>}/>
-
         <Route  path='/profile' render = {()=><ProfilePage/> }/>
 
       </div>

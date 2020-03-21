@@ -1,4 +1,4 @@
-import Settings from './Settings'
+import SettingsPage from './Settings'
 import {connect} from 'react-redux'
 
 
@@ -23,7 +23,7 @@ const MapDispatchToProps=(dispatch)=>{
 
 
 
-const SettingsContainer = connect(mapStateToProps,MapDispatchToProps)(Settings)
+const SettingsContainer = connect(mapStateToProps,MapDispatchToProps)(SettingsPage)
 
 
 

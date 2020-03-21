@@ -10,7 +10,7 @@ grid-template-areas:
 
 .navigation{
   grid-area: nav;
-  background-color: firebrick;
+  background-color: rgb(209, 175, 156);
 }
 
 a{
