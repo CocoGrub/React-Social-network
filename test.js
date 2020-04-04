@@ -14,3 +14,26 @@ const arr4=[...arr3,obj3]
 console.log(arr4);
 obj4={...arr3}
 console.log(obj4);
+
+
+class Cat { 
+    constructor(name) {
+      this.name = name;
+    }
+    
+    speak() {
+      console.log(this.name + ' издает звук.');
+    }
+  }
+  
+  class Lion extends Cat {
+    speak() {
+      super.speak();
+      console.log(this.name + ' рычит.');
+    }
+  }
+
+  const simba = new Lion('simba')
+  const sherhan=new Cat('sherhan')
+  simba.speak()
+  sherhan.speak()

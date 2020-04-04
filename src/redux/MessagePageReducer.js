@@ -20,7 +20,7 @@ const initialState={
     }
 
 const MessagePageReducer = (state=initialState,action)=>{
-    console.log(action);
+
     switch(action.type){
         case sendMessage: 
         const myState={...state}
