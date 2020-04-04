@@ -1,8 +1,6 @@
 import {connect} from 'react-redux'
-import {SetUsers,SetCurrentPage,SetTotalUsersCount,SetFetching,Follow,Unfollow} from '../../redux/UsersPageReducer';
+import {SetUsers,SetCurrentPage,SetTotalUsersCount,SetFetching,Follow,Unfollow,ChangeButtonActive} from '../../redux/UsersPageReducer';
 import Users from './UsersAPI'
-
-
 
 
 const mapStateToProps=(state)=>{
@@ -11,9 +9,10 @@ const mapStateToProps=(state)=>{
         currentPage:state.usersPage.currentPage,
         totalUsersCount:state.usersPage.totalUsersCount,
         pageSize:state.usersPage.pageSize,
-        isFetching: state.usersPage.isFetching
+        isFetching: state.usersPage.isFetching,
+        followingInProgress:state.usersPage.followingInProgress
     }
-}
+};
 
 // const mapDispatchToProps=(dispatch)=>{
 //     return{
@@ -23,7 +22,6 @@ const mapStateToProps=(state)=>{
 //         setCurrentPage:(page)=>{dispatch(setCurrentPageAC(page))},
 //         setTotalUsersCount:(totalUsers)=>{dispatch(setTotalUsersCountAC(totalUsers))},
 //         isFetching:(x)=>{dispatch(isFetchingAC(x))}
-//
 //     }
 // }
 
@@ -33,6 +31,8 @@ const MyFriendsContainer=connect(mapStateToProps,{
     SetTotalUsersCount,
     SetFetching,
     Follow,
-    Unfollow})(Users)
+    Unfollow,
+    ChangeButtonActive
+})(Users);
 
 export default MyFriendsContainer

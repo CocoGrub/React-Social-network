@@ -1,13 +1,14 @@
 import React from "react";
 import styles from "./style.module.css";
 import {NavLink} from "react-router-dom";
-import * as axios from 'axios'
 import Api from '../../api/api'
 
-const Users = (props) => {
-    const pagesCount = 10; // Math.ceil(props.totalUsersCount / props.pageSize)
 
+const Users = (props) => {
+
+    const pagesCount = 10; // Math.ceil(props.totalUsersCount / props.pageSize)
     const pages = [];
+    console.log('users',props)
     for (let i = 1; i <= pagesCount; i++) {
         pages.push(i)
     }
@@ -25,24 +26,29 @@ const Users = (props) => {
 
 
             {props.users.map((x, y) => {
+
                 return (<div key={y}>
                     <NavLink to={`./profile/` + x.id}>
                         <span>{x.name}</span>
                     </NavLink>
-                    {x.followed ? <button onClick={() => {
+                    {x.followed ? <button disable={props.followingInProgress.some((id)=>{return id === x.id})} onClick={() => {
+                        props.ChangeButtonActive(true,x.id);
                         Api.Unfollow(x.id)
                             .then((res) => {
                                 if (res.data.resultCode === 0) {
                                     props.unfollow(x.id)
                                 }
+                                props.ChangeButtonActive(false,x.id)
                             })
 
-                    }}>unfollow</button> : <button onClick={() => {
+                    }}>unfollow</button> : <button disabled={props.followingInProgress.some((id)=>{return id === x.id})} onClick={() => {
+                        props.ChangeButtonActive(true,x.id);
                         Api.Follow(x.id)
                             .then((res) => {
                                 if (res.data.resultCode === 0) {
                                     props.follow(x.id)
                                 }
+                                props.ChangeButtonActive(false,x.id)
                             })
                     }}>follow</button>}
 
@@ -51,6 +57,6 @@ const Users = (props) => {
             })}
         </div>
     )
-}
+};
 
 export default Users

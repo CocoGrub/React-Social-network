@@ -3,6 +3,7 @@ import * as axios from 'axios'
 import Users from "./Users";
 import Preloader from "../../common/preloader/Preloader";
 import Api from "../../api/api";
+import {ChangeButtonActive} from "../../redux/UsersPageReducer";
 
 class MyFriends extends Component {
 
@@ -12,12 +13,9 @@ class MyFriends extends Component {
         Api.getUsers(this.props.currentPage, this.props.pageSize)
 
             .then((data) => {
-                debugger
                 this.props.SetUsers(data.items);
                 this.props.SetFetching(false);
                 this.props.SetTotalUsersCount(data.totalCount)
-
-
             })
     }
 
@@ -44,6 +42,8 @@ class MyFriends extends Component {
                    reqPage={(x) => {
                        this.OnPageChanged(x)
                    }}
+                   ChangeButtonActive={this.props.ChangeButtonActive}
+                   followingInProgress={this.props.followingInProgress}
             />
         </>
     }
