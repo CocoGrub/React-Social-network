@@ -1,21 +1,20 @@
 import React from "react";
 import ProfilePage from "./ProfilePage";
-import Axios from "axios";
-import {SetProfile} from '../../redux/ProfileReducer'
+
+import {ThunkSetProfile} from '../../redux/ProfileReducer'
 import {connect} from 'react-redux'
-import {withRouter} from "react-router-dom";
+import {Redirect, withRouter} from "react-router-dom";
+import withAuthRedirect from '../withRouterHOC/withRouter'
+import {compose} from "redux";
 
 class ProfileContainer extends React.Component {
     componentDidMount() {
-        Axios.get(`    https://social-network.samuraijs.com/api/1.0/profile/ +${this.props.match.params.id}`).then(
-            (res) => {
-                this.props.SetProfile(res.data)
 
-
-            })
+        this.props.ThunkSetProfile(this.props.match.params.id)
     }
 
     render() {
+
 
         return (
             <>
@@ -27,13 +26,17 @@ class ProfileContainer extends React.Component {
 
 const mapStateToProps = (state) => {
     return {
-        profile: state.profilePage.profile
+        profile: state.profilePage.profile,
+
     }
 }
-const routerProfileContainer=withRouter(ProfileContainer)
+
+export default compose
+(connect(mapStateToProps, {ThunkSetProfile}),
+    withRouter,
+    withAuthRedirect)(ProfileContainer);
 
 
-export default connect(mapStateToProps, {
-    SetProfile
 
-})(routerProfileContainer);
+
+
