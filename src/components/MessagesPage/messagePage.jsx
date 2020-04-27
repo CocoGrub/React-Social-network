@@ -1,20 +1,24 @@
 import React from 'react';
 import Dialogs from './Dialogs/Dialogs'
-
+import {Redirect} from 'react-router-dom'
 
 const Messages=(props)=>{
 
 
-console.log('messagePage',props)
-
+    if(!props.login){
+        return <Redirect to={"/login"}/>
+    }
 const addText=()=>{
     props.sendMessage('kdk')
 }
 
-return(<div>
-        <h2>Очень важные Разговорчики</h2>
 
-        <button onClick={()=>{addText()}}>wwww</button>
+
+
+return(<div>
+        <h2>MESSAGE PAGE</h2>
+
+        <button onClick={()=>{addText()}}>addText</button>
 
         
         <Dialogs names={props.names}

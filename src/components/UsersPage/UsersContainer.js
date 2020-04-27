@@ -1,6 +1,42 @@
 import {connect} from 'react-redux'
-import {SetUsers,SetCurrentPage,SetTotalUsersCount,SetFetching,Follow,Unfollow,ChangeButtonActive} from '../../redux/UsersPageReducer';
-import Users from './UsersAPI'
+import {SetUsers,SetCurrentPage,SetTotalUsersCount,ThunkSetCurrentPage,SetFetching,Follow,Unfollow,ChangeButtonActive,getUsersThunkCreator}
+from '../../redux/UsersPageReducer';
+import Users from "./Users";
+import Preloader from "../../common/preloader/Preloader";
+import React from "react";
+
+class MyFriends extends React.Component {
+
+
+    componentDidMount() {
+
+        this.props.getUsersThunkCreator(this.props.currentPage, this.props.pageSize)
+
+    }
+
+    OnPageChanged(x) {
+        this.props.ThunkSetCurrentPage(x,this.props.pageSize)
+    }
+
+    render() {
+
+        return <>
+            {this.props.isFetching ? <Preloader/> : null}
+            <Users users={this.props.users}
+                   Follow={this.props.Follow}
+                   unFollow={this.props.Unfollow}
+                   currentPage={this.props.currentPage}
+                   totalUsersCount={this.props.totalUsersCount}
+                   pageSize={this.props.pageSize}
+                   reqPage={(x) => {
+                       this.OnPageChanged(x)
+                   }}
+                   ChangeButtonActive={this.props.ChangeButtonActive}
+                   followingInProgress={this.props.followingInProgress}
+            />
+        </>
+    }
+}
 
 
 const mapStateToProps=(state)=>{
@@ -14,16 +50,7 @@ const mapStateToProps=(state)=>{
     }
 };
 
-// const mapDispatchToProps=(dispatch)=>{
-//     return{
-//         goFriend:(id)=>{dispatch(goFriendAC(id))},
-//         unFriendAC:(id)=>{dispatch(unFriendAC(id))},
-//         setUsers:(users)=>{dispatch(setUsersAC(users))},
-//         setCurrentPage:(page)=>{dispatch(setCurrentPageAC(page))},
-//         setTotalUsersCount:(totalUsers)=>{dispatch(setTotalUsersCountAC(totalUsers))},
-//         isFetching:(x)=>{dispatch(isFetchingAC(x))}
-//     }
-// }
+
 
 const MyFriendsContainer=connect(mapStateToProps,{
     SetUsers,
@@ -32,7 +59,9 @@ const MyFriendsContainer=connect(mapStateToProps,{
     SetFetching,
     Follow,
     Unfollow,
-    ChangeButtonActive
-})(Users);
+    ChangeButtonActive,
+    getUsersThunkCreator,
+    ThunkSetCurrentPage
+})(MyFriends);
 
 export default MyFriendsContainer

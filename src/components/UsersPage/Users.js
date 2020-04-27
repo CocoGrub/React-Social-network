@@ -31,7 +31,7 @@ const Users = (props) => {
                     <NavLink to={`./profile/` + x.id}>
                         <span>{x.name}</span>
                     </NavLink>
-                    {x.followed ? <button disable={props.followingInProgress.some((id) => {
+                    {x.followed ? <button disabled={props.followingInProgress.some((id) => {
                         return id === x.id
                     })}
                                           onClick={() => {props.unFollow(x.id)}}>

@@ -1,40 +1,61 @@
-
 import React from "react";
-class MyPageStatus extends React.Component{
-    state={
-        editMode:false
+import {thunkSetStatus, thunkUpdateStatus} from "../../../redux/ProfileReducer";
+
+class Status extends React.Component {
+
+
+    state = {
+        editMode: false,
+        status: this.props.status
+    };
+
+    componentDidUpdate(prevProps, prevState, snapshot) {
+        if (prevProps.status !== this.props.status) {
+            this.setState({
+                status: this.props.status
+            })
+        }
     }
 
-    activateMode=()=>{
+    activateMode = () => {
         this.setState({
-            editMode:true
+            editMode: true
+        })
+
+    }
+
+    deActivateMode = () => {
+        this.setState({
+            editMode: false
+        })
+        this.props.thunkUpdateStatus(this.state.status)
+    };
+    onStatusChange = (e) => {
+        this.setState({
+            status: e.currentTarget.value
         })
     }
 
-    deActivateMode=()=>{
-        this.setState({
-            editMode:false
-        })
-    }
     render() {
-        debugger
-    if(!this.state.editMode){
 
-        return  <span onDoubleClick={this.activateMode} >{this.props.status}</span>
+        if (!this.state.editMode) {
 
-    }else {
-        return <>
-            <div>
+            return <span onDoubleClick={this.activateMode}>{this.props.status}</span>
 
-                <input  autoFocus={true} onBlur={this.deActivateMode} value={this.props.status}/>
+        } else {
+            return <>
+                <div>
 
-            </div>
+                    <input autoFocus={true} onBlur={this.deActivateMode} value={this.state.status}
+                           onChange={this.onStatusChange}/>
 
-        </>
-    }
+                </div>
+
+            </>
+        }
 
     }
 
 }
 
-export default MyPageStatus
+export default Status

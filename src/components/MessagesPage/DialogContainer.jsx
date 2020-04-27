@@ -1,7 +1,5 @@
 import {connect} from 'react-redux';
 import MessagePage from './messagePage'
-// import DialogActionCreator from '../../redux/MessagePageReducer'
-// че за ебаная хуета??????????????????????
 
 
 
@@ -19,7 +17,8 @@ const DialogActionCreator=(text)=>{
 const mapStateToProps = (state)=>{
     return{
         names:state.messagesPage.names,
-        messages: state.messagesPage.messages
+        messages: state.messagesPage.messages,
+        login:state.auth.login
     }
 }
 

@@ -1,31 +1,40 @@
 import React from 'react';
 import {Navlink} from 'react-router-dom'
 import classes from './Dialogs.module.css'
+import {Field, reduxForm} from "redux-form";
 
+const DialogsForm = (props) => {
+    return (
+        <form name="dialog" onSubmit={props.handleSubmit}>
+            <Field onSubmit={props.handleSubmit} component="input" name="sendMessage"></Field>
+            <button> send!</button>
+        </form>
+    )
+}
 
-const Dialogs = (props)=>{
-    console.log(`Dialogs`,props);
+const ReduxFormDialog = reduxForm({form: "Dialog"})(DialogsForm);
 
-    const textRef = React.createRef()
-    const sendSMS=()=>{
-        console.log(textRef.current.value);
-        
-        props.sendMessage(textRef.current.value)
+const Dialogs = (props) => {
+      const sendSMS = (body) => {
+
+       props.sendMessage(body.sendMessage)
     }
 
-    const names=props.names.map((x,k)=>{
-        return(<div className={classes.el} key={k}>{x.name}</div>)
+    const names = props.names.map((x, k) => {
+        return (<div className={classes.el} key={k}>{x.name}</div>)
     })
 
-    const messages = props.messages.map((x,k)=>{
-    return(<div  className={classes.el} key ={k}><textarea ref={textRef} defaultValue={x.message}></textarea><button onClick={sendSMS}>send!</button></div>)
+    const messages = props.messages.map((x, k) => {
+        return (<div className={classes.el} key={k}>
+        </div>)
     })
-    
-    return(<div className={classes.talk}>
-    <div >{names}</div>
-    <div>{messages}</div>
-   
-           </div>)
+
+    return (<div className={classes.talk}>
+        <ReduxFormDialog onSubmit={sendSMS}/>
+        <div>{names}</div>
+        <div>{messages}</div>
+
+    </div>)
 }
 
 export default Dialogs
