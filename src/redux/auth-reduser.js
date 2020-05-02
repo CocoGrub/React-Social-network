@@ -1,4 +1,5 @@
 import Api from "../api/api";
+import { stopSubmit } from "redux-form";
 
 
 
@@ -45,7 +46,7 @@ export const setUserData = (id, email, login) => {return {type: "SET_USER_DATA",
 
 export const ThunkSetUserData=()=> {
     return (dispatch) =>{
-        Api.IfLogin().then((response)=>{
+        Api.Me().then((response)=>{
             if(response.data.resultCode===0){
                 const {id,login,email}=response.data.data;
                 return dispatch(setUserData(id,email,login,true))
@@ -59,6 +60,10 @@ export const ThunkLogin=(email,password,rememberMe)=>{
         Api.Login(email,password,rememberMe).then((res)=>{
             if(res.data.resultCode===0){
                 dispatch(ThunkSetUserData())
+            }else{
+                const message = res.data.messages.length>0?res.data.messages[0]:"something went wrong.."
+                let action = stopSubmit("login",{_error:message})
+                dispatch(action)
             }
 
         })

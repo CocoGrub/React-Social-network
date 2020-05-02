@@ -39,7 +39,7 @@ class Api {
         return instance.post(`/auth/login`,{email,password,rememberMe})
     }
     
-    static  IfLogin(){
+    static Me(){
         return instance.get(`auth/me`).then((res)=>{return res})
     }//if already login,return res.data.data, then сетаем их в стор
 

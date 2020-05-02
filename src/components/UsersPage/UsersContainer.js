@@ -1,6 +1,7 @@
 import {connect} from 'react-redux'
 import {SetUsers,SetCurrentPage,SetTotalUsersCount,ThunkSetCurrentPage,SetFetching,Follow,Unfollow,ChangeButtonActive,getUsersThunkCreator}
 from '../../redux/UsersPageReducer';
+import {GetUsers,CurrentPage,TotalUsersCount,PageSize,IsFetching,FollowingInProgress} from '../../redux/users-selectors';
 import Users from "./Users";
 import Preloader from "../../common/preloader/Preloader";
 import React from "react";
@@ -41,12 +42,12 @@ class MyFriends extends React.Component {
 
 const mapStateToProps=(state)=>{
     return{
-        users: state.usersPage.users,
-        currentPage:state.usersPage.currentPage,
-        totalUsersCount:state.usersPage.totalUsersCount,
-        pageSize:state.usersPage.pageSize,
-        isFetching: state.usersPage.isFetching,
-        followingInProgress:state.usersPage.followingInProgress
+        users: GetUsers(state),
+        currentPage:CurrentPage(state),
+        totalUsersCount:TotalUsersCount(state),
+        pageSize:PageSize(state),
+        isFetching: IsFetching(state),
+        followingInProgress:FollowingInProgress(state)
     }
 };
 

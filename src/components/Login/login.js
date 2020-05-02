@@ -5,7 +5,7 @@ import {required,MaxLengthCreator} from "../../utils/validators/validation";
 import { connect } from "react-redux";
 import {ThunkLogin} from '../../redux/auth-reduser'
 import { Redirect } from "react-router-dom";
-
+import styles from '../../common/FormControls/style.module.css'
 const length40=MaxLengthCreator(40)
 
 const LoginForm=(props)=>{
@@ -19,7 +19,8 @@ const LoginForm=(props)=>{
             </div>
             <div>
                 <Field type={"checkbox"}  name={"rememberMe"} component={"input"}/>remember
-            </div>
+            </div>{props.error &&  <div className={styles.formSummaryError}>{props.error}
+                </div>}
             <button type={"submit"}>submit</button>
         </form>
     )

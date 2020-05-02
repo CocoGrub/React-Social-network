@@ -5,6 +5,7 @@ import globalsReducer from './globalsReducer'
 import UsersPageReducer from './UsersPageReducer'
 import authReducer from './auth-reduser'
 import MyPageReducer from './MyPageReducer'
+import appReducer from './app-reducer'
 import thunkMiddleware from "redux-thunk";
 import {reducer as formReducer} from 'redux-form'
 const reducers=combineReducers({
@@ -15,7 +16,8 @@ const reducers=combineReducers({
     usersPage:UsersPageReducer,
     auth:authReducer,
     MyPage:MyPageReducer,
-    form: formReducer
+    form: formReducer,
+    app:appReducer
 })
 
 

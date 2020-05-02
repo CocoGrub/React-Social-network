@@ -1,4 +1,4 @@
-import React from 'react';
+import React,{Component} from 'react';
 import './App.css';
 import HeaderApi from './components/header/headerContainer'
 import Navigation from './components/navigation/navigation'
@@ -10,9 +10,25 @@ import UsersContainer from './components/UsersPage/UsersContainer'
 import MyPageContainer from "./components/MyPage/MyPageContainer";
 import {Route} from 'react-router-dom'
 import Login from "./components/Login/login";
-function App() {
+import { connect} from 'react-redux';
+import {compose } from 'redux'
+import {withRouter} from 'react-router-dom'
+import {ThunkSetInitialized} from './redux/app-reducer'
+import Preloader from './common/preloader/Preloader';
 
 
+
+class App extends Component {
+    componentDidMount(){
+
+        this.props.ThunkSetInitialized();
+        console.log(`App`,this.props.isInitialized);
+        
+    }
+
+
+render(){
+    if(this.props.isInitialized===false){return <Preloader/>}
     return (
 
         <div className="App">
@@ -32,5 +48,11 @@ function App() {
 
     );
 }
+}
+const mapStateToProps=(state)=>{
+    return{
+        isInitialized:state.app.initialized
+    }
+}
 
-export default App;
+export default withRouter(connect(mapStateToProps,{ThunkSetInitialized})( App))
