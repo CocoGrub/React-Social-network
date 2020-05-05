@@ -1,7 +1,7 @@
 import {connect} from 'react-redux'
 import {SetUsers,SetCurrentPage,SetTotalUsersCount,ThunkSetCurrentPage,SetFetching,Follow,Unfollow,ChangeButtonActive,getUsersThunkCreator}
 from '../../redux/UsersPageReducer';
-import {GetUsers,CurrentPage,TotalUsersCount,PageSize,IsFetching,FollowingInProgress} from '../../redux/users-selectors';
+import {GetUsers,GetUsersSuper,CurrentPage,TotalUsersCount,PageSize,IsFetching,FollowingInProgress} from '../../redux/users-selectors';
 import Users from "./Users";
 import Preloader from "../../common/preloader/Preloader";
 import React from "react";
@@ -20,7 +20,8 @@ class MyFriends extends React.Component {
     }
 
     render() {
-
+        console.log('user container render');
+        
         return <>
             {this.props.isFetching ? <Preloader/> : null}
             <Users users={this.props.users}
@@ -42,7 +43,7 @@ class MyFriends extends React.Component {
 
 const mapStateToProps=(state)=>{
     return{
-        users: GetUsers(state),
+        users: GetUsersSuper(state),
         currentPage:CurrentPage(state),
         totalUsersCount:TotalUsersCount(state),
         pageSize:PageSize(state),

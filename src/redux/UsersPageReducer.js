@@ -50,28 +50,38 @@ export const getUsersThunkCreator = (currentPage, pageSize) => {
             })
     }
 };
+
+const common=(id,apiMethod,followUnfollow)=>{
+    return async(dispatch) => {
+        dispatch(ChangeButtonActive(true,id));
+        const res = await apiMethod
+        if (res.data.resultCode === 0) {
+            dispatch(UnfollowAC(id));
+        }
+        dispatch(ChangeButtonActive(false, id))
+    }
+}
+
 export const Unfollow = (id) => {
-    return (dispatch) => {
+    const apiMethod = Api.Unfollow(id).bind(Api)
+    const followUnfollow = UnfollowAC(id)
+    return async(dispatch) => {
        dispatch(ChangeButtonActive(true,id));
-        Api.Unfollow(id)
-            .then((res) => {
-                if (res.data.resultCode === 0) {
+       const res = await Api.Unfollow(id)
+            if (res.data.resultCode === 0) {
                     dispatch(UnfollowAC(id));
                 }
-                dispatch(ChangeButtonActive(false, id))
-            })
+        dispatch(ChangeButtonActive(false, id))
     }
 };
 export const Follow = (id) => {
-    return (dispatch) => {
+    return async(dispatch) => {
         dispatch(ChangeButtonActive(true,id));
-        Api.Follow(id)
-            .then((res) => {
+            const res = await Api.Follow(id)
                 if (res.data.resultCode === 0) {
                     dispatch(FollowAC(id));
                 }
                 dispatch(ChangeButtonActive(false, id))
-            })
     }
 };
 
@@ -83,11 +93,13 @@ const initialState = {
     totalUsersCount: 0,
     pageSize: 10,
     isFetching: true,
-    followingInProgress: []
+    followingInProgress: [],
+    fake:1
 };
 
 const UsersPageReducer = (state = initialState, action) => {
     switch (action.type) {
+        case "hello":return{...state,fake:state.fake+1}
         case "CHANGE_BUTTON_ACTIVE":
             return {
                 ...state, followingInProgress: action.isFetching ?

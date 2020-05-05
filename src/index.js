@@ -7,7 +7,9 @@ import store from './redux/reduxStore'
 import {BrowserRouter} from 'react-router-dom'
 import {Provider} from 'react-redux'
 
-
+setInterval(()=>{
+     store.dispatch({type:"hello"})
+},1000)
     
      ReactDOM.render(<BrowserRouter>
      <Provider store={store}>

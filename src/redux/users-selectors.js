@@ -1,6 +1,11 @@
+import { createSelector } from 'reselect'
+
 export const GetUsers=(state)=>{
     return state.usersPage.users
 }
+export const GetUsersSuper=createSelector(GetUsers,(users)=>{
+    return users.filter(i=>true)
+})
 export const CurrentPage=(state)=>{
     return state.usersPage.currentPage
 }
