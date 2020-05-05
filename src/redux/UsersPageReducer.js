@@ -51,29 +51,20 @@ export const getUsersThunkCreator = (currentPage, pageSize) => {
     }
 };
 
-const common=(id,apiMethod,followUnfollow)=>{
-    return async(dispatch) => {
+const common= async(dispatch,id,apiMethod,followUnfollow)=>{
         dispatch(ChangeButtonActive(true,id));
-        const res = await apiMethod
+        const res = await apiMethod(id)
         if (res.data.resultCode === 0) {
-            dispatch(UnfollowAC(id));
+            dispatch(followUnfollow(id));
         }
         dispatch(ChangeButtonActive(false, id))
     }
-}
+
 
 export const Unfollow = (id) => {
-    const apiMethod = Api.Unfollow(id).bind(Api)
-    const followUnfollow = UnfollowAC(id)
-    return async(dispatch) => {
-       dispatch(ChangeButtonActive(true,id));
-       const res = await Api.Unfollow(id)
-            if (res.data.resultCode === 0) {
-                    dispatch(UnfollowAC(id));
-                }
-        dispatch(ChangeButtonActive(false, id))
+    return async (dispatch)=>{common(dispatch,id,Api.Unfollow,UnfollowAC)}
     }
-};
+
 export const Follow = (id) => {
     return async(dispatch) => {
         dispatch(ChangeButtonActive(true,id));

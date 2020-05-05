@@ -22,8 +22,7 @@ class App extends Component {
     componentDidMount(){
 
         this.props.ThunkSetInitialized();
-        console.log(`App`,this.props.isInitialized);
-        
+       
     }
 
 
