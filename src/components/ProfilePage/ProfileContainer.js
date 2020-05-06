@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import ProfilePage from "./ProfilePage";
 
 import {ThunkSetProfile,thunkSetStatus,thunkUpdateStatus} from '../../redux/ProfileReducer'
@@ -7,19 +7,19 @@ import {Redirect, withRouter} from "react-router-dom";
 import withAuthRedirect from '../withRouterHOC/withRouter'
 import {compose} from "redux";
 
-class ProfileContainer extends React.Component {
-    componentDidMount() {
-        this.props.thunkSetStatus(this.props.match.params.id)
-        this.props.ThunkSetProfile(this.props.match.params.id)
-    }
+const ProfileContainer = (props) =>{
+    
+    useEffect(()=>{
+        props.thunkSetStatus(this.props.match.params.id)
+        props.ThunkSetProfile(this.props.match.params.id)
+    },[])
 
-    render() {
-        return (
+    return (
             <>
                 <ProfilePage  {...this.props}/>
             </>
         )
-    }
+
 }
 
 const mapStateToProps = (state) => {

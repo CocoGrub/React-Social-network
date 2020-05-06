@@ -1,4 +1,4 @@
-import React,{useState} from "react";
+import React,{useState,useEffect} from "react";
 import {thunkSetStatus, thunkUpdateStatus} from "../../../redux/ProfileReducer";
 
 const  StatusHook =(props)=> {

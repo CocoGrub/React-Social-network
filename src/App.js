@@ -1,4 +1,4 @@
-import React,{Component} from 'react';
+import React,{Component, useEffect} from 'react';
 import './App.css';
 import HeaderApi from './components/header/headerContainer'
 import Navigation from './components/navigation/navigation'
@@ -18,18 +18,17 @@ import Preloader from './common/preloader/Preloader';
 
 
 
-class App extends Component {
-    componentDidMount(){
+const App = (props)=> {
 
-        this.props.ThunkSetInitialized();
-       
-    }
-
-
-render(){
-    console.log('app render');
-    
-    if(this.props.isInitialized===false){return <Preloader/>}
+    // componentDidMount(){
+    //     this.props.ThunkSetInitialized();
+    //     console.log(`App`,this.props.isInitialized);
+        
+    // }
+    useEffect(()=>{
+        props.ThunkSetInitialized()
+    },[])
+    if(props.isInitialized===false){return <Preloader/>}
     return (
 
         <div className="App">
@@ -49,7 +48,7 @@ render(){
 
     );
 }
-}
+
 const mapStateToProps=(state)=>{
     return{
         isInitialized:state.app.initialized

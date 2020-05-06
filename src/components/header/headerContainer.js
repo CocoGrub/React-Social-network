@@ -6,15 +6,11 @@ import {connect} from "react-redux";
 import {ThunkLogOut} from '../../redux/auth-reduser'
 import { withRouter } from "react-router-dom";
 
-class HeaderApi extends React.Component {
-    componentDidMount() {
-        // this.props.ThunkSetUserData();
-    }
-    render() {
+const  HeaderApi = (props)=> {
         return <>
-            <Header {...this.props}/>
+            <Header {...props}/>
         </>
-    }
+
 }
 
 const mapStateToProps=(state)=>{

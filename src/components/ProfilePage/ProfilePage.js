@@ -1,7 +1,7 @@
 import React from 'react'
 import PostContainer from './post/postContainer'
 import classes from './profilePage.module.css'
-import Status from "./Status/Status";
+import StatusHook from "./Status/StatusHook";
  const  ProfilePage =(props)=>{
 
     return(
@@ -9,7 +9,7 @@ import Status from "./Status/Status";
         <div className={classes.dialog}>
         <img alt='myPhoto'></img>
             <br/>
-            <Status {...props}/>
+            <StatusHook {...props}/>
 
         <p>About me</p>
             <span>{props.profile.fullName}</span>
