@@ -1,4 +1,4 @@
-import {applyMiddleware, combineReducers, createStore} from "redux";
+import {applyMiddleware, combineReducers, compose, createStore} from "redux";
 import messagePageReducer from './MessagePageReducer'
 import ProfilePageReducer from './ProfileReducer'
 import globalsReducer from './globalsReducer'
@@ -21,7 +21,8 @@ const reducers=combineReducers({
 })
 
 
+const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
-const store = createStore(reducers,applyMiddleware(thunkMiddleware));
+const store = createStore(reducers,composeEnhancers(applyMiddleware(thunkMiddleware)));
 window.store=store
 export default store

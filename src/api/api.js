@@ -58,6 +58,9 @@ class Api {
     static sendBio(data){
         return instance.put('profile',data)
     }
+    static requestCaptcha(){
+        return instance.get('security/get-captcha-url')
+    }
 
 }
 
