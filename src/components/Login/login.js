@@ -10,7 +10,7 @@ const length40=MaxLengthCreator(40)
 
 const LoginForm=(props)=>{
     return(
-        <form onSubmit={props.handleSubmit}>
+        <form onSubmit={props.handleSubmit} >
             <div>
                 <Field validate={[required,length40]} placeholder={"Login"} name={"email"} component={Input}/>
             </div>

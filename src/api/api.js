@@ -1,4 +1,5 @@
 import * as axios from "axios";
+import {savePhotoSucces} from "../redux/ProfileReducer";
 
 const instance = axios.create({
     withCredentials: true,
@@ -45,6 +46,17 @@ class Api {
 
     static LogOut(){
         return instance.delete(`/auth/login`)
+    }
+    static SavePhoto(photo){
+        const formData=new FormData()
+        formData.append("image",photo)
+        return instance.put(`profile/photo`,formData,{headers:{
+            'Content-Type':'multipart/form-data'
+            }})
+    }
+
+    static sendBio(data){
+        return instance.put('profile',data)
     }
 
 }

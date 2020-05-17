@@ -1,4 +1,7 @@
 .dialog{
-    display: inline;
+
     background-color: royalblue;
+}
+.mainPhoto{
+    max-width: 300px
 }

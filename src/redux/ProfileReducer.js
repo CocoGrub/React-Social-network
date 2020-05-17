@@ -1,8 +1,9 @@
 import Api from "../api/api";
+import {stopSubmit} from "redux-form";
 
 const addPost = "ADD-POST";
 const changeInput = "CHANGE-INPUT";
-
+const savePhoto = "SAVE-PHOTO";
 const setStatus = (status) => {
     return {type: "setStatus", status}
 }
@@ -16,19 +17,31 @@ export const ChangeInputActionCreator = (text) => { // used in ui
     return {type: changeInput, defaultPostValue: text}
 };
 
-
+export const savePhotoSucces = (photos) => {
+    return {type: savePhoto, photos: photos}
+}
 export const SetProfile = (profile) => {
     return {type: "setProfile", profile: profile}
 };
 
 export const ThunkSetProfile = (userID) => {
-    return (dispatch) => {
+    return async (dispatch) => {
+        const response = await Api.GetProfile(userID)
 
-        Api.GetProfile(userID).then((res) => {
-            dispatch(SetProfile(res.data))
+        dispatch(SetProfile(response.data))
+//dodelat'
 
-        }).catch(err => console.log(err))
 
+    }
+}
+// bug при обновлении фото профиля
+
+export const ThunkUploadPhoto = (x) => {
+    return async (dispatch) => {
+        const response = await Api.SavePhoto(x)
+        if (response.data.resultCode === 0)
+            debugger
+        dispatch(savePhotoSucces(response.data.data.photos))
     }
 }
 
@@ -51,15 +64,21 @@ export const thunkUpdateStatus = (status) => {
     }
 }
 
-
 const initialState = {
     posts: [
         {name: 'vanya', id: 1, likes: 2, post: 'i love u'},
         {name: 'john', id: 2, likes: 2, post: 'mazda'},
         {name: 'gena', id: 3, likes: 2, post: 'bmw'},
         {name: 'gayla', id: 4, likes: 2, post: 'scrooge'}],
-    profile: "default",
-    status:"none status here",
+    profile: {
+        photos: {
+            large: "",
+            small: ""
+        },
+        contacts: {}
+
+    },
+    status: "none status here",
     defaultPostValue: 'post here'
 };
 
@@ -84,8 +103,23 @@ const ProfilePageReducer = (state = initialState, action) => {
             const myState1 = {...state}
             myState1.defaultPostValue = action.defaultPostValue
             return myState1
+        case savePhoto:
+            return {...state, profile: {...state.profile, photos: action.photos}}
         default:
             return state
+    }
+}
+
+export const ThunkSendBio = (data) => {
+    return async (dispatch, getState) => {
+        const profile = getState().auth.id
+        const response = await Api.sendBio(data)
+        if (response.data.resultCode === 0) {
+            dispatch(ThunkSetProfile(profile)) //??
+        } else {
+            dispatch(stopSubmit("ProfileDataForm", {_error: response.data.messages[0]}))
+            return Promise.reject(response.data.messages[0])
+        }
     }
 }
 

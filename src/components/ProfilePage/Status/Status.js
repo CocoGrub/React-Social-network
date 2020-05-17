@@ -1,5 +1,5 @@
 import React from "react";
-import {thunkSetStatus, thunkUpdateStatus} from "../../../redux/ProfileReducer";
+
 
 class Status extends React.Component {
 

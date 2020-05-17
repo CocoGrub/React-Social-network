@@ -1,7 +1,7 @@
 import React,{useState,useEffect} from "react";
 import {thunkSetStatus, thunkUpdateStatus} from "../../../redux/ProfileReducer";
 
-const  StatusHook =(props)=> {
+const  Status =(props)=> {
 const [editMode, setMode] = useState(false)
 const [status,setStatus]=useState(props.status)
     // state = {
@@ -43,4 +43,4 @@ const [status,setStatus]=useState(props.status)
     }
 
 
-export default StatusHook
+export default Status
