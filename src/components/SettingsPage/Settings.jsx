@@ -1,5 +1,5 @@
 import React from 'react';
-
+import connectedAuthUserHOC from '../Hoc/AuthUserHOC'
 
 
 const Settings =(props)=>{
@@ -17,4 +17,4 @@ const Settings =(props)=>{
 
 
 
-export default Settings
+export default connectedAuthUserHOC(Settings)

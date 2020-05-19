@@ -5,6 +5,7 @@ import Status from "./Status/StatusHook";
 import defaultPhoto from '../../common/defPhoto/logo192.png';
 import ProfileDataForm from "./ProfileDataForm";
 
+import connectedAuthUserHOC from '../Hoc/AuthUserHOC'
 const ProfilePage = (props) => {
 
     const [editMode, changeEditMode] = useState(false)
@@ -62,4 +63,4 @@ const ProfileData = (props) => {
 }
 
 
-export default ProfilePage
+export default connectedAuthUserHOC(ProfilePage)

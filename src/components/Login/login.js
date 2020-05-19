@@ -1,11 +1,7 @@
 import React from "react";
-import {Field, reduxForm} from "redux-form";
-import {Input} from '../../common/FormControls/formsControls'
-import {required,MaxLengthCreator} from "../../utils/validators/validation";
 import { connect } from "react-redux";
 import {ThunkLogin} from '../../redux/auth-reduser'
 import { Redirect } from "react-router-dom";
-import styles from '../../common/FormControls/style.module.css'
 import LoginReduxForm from "./LoginForm";
 
 

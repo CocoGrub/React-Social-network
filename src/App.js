@@ -5,8 +5,8 @@ import Navigation from './components/navigation/navigation'
 import DialogContainer from './components/MessagesPage/DialogContainer'
 import ProfileContainer from './components/ProfilePage/ProfileContainer'
 import Myfooter from './components/footer/myFooter'
-
-import {Route} from 'react-router-dom'
+import AuthUserHOC from "./components/Hoc/AuthUserHOC";
+import {Redirect, Route} from 'react-router-dom'
 import Login from "./components/Login/login";
 import { connect} from 'react-redux';
 import {compose } from 'redux'
@@ -31,11 +31,12 @@ const App = (props)=> {
         console.log('app init')
     },[])
     if(props.isInitialized===false){return <Preloader/>}
+
     return (
 
         <div className="App">
             <HeaderApi/>
-            <Navigation/>
+            <Navigation authorizedID={props.authorizedID}/>
 
             <div className='content'>
                 {/*<Route path='/profile/6834' render={()=><ProfileContainer/>}/>*/}
@@ -53,10 +54,10 @@ const App = (props)=> {
 
 const mapStateToProps=(state)=>{
     return{
-        isInitialized:state.app.initialized
+        isInitialized:state.app.initialized,
+        authorizedID:state.auth.id
     }
 }
-
 
 
 
