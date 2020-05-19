@@ -63,9 +63,9 @@ export const ThunkSetUserData = () => {
     }
 }
 
-export const ThunkLogin = (email, password, rememberMe) => {
+export const ThunkLogin = (email, password, rememberMe,captcha) => {
     return (dispatch) => {
-        Api.Login(email, password, rememberMe).then((res) => {
+        Api.Login(email, password, rememberMe,captcha).then((res) => {
             if (res.data.resultCode === 0) {
                 dispatch(ThunkSetUserData())
             } else {

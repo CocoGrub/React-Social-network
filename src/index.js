@@ -10,15 +10,14 @@ import {Provider} from 'react-redux'
 // setInterval(()=>{
 //      store.dispatch({type:"hello"})
 // },1000)
-    
-     ReactDOM.render(<BrowserRouter>
-     <Provider store={store}>
-   
-      <App  />    
-      </Provider>
-     </BrowserRouter>, document.getElementById('root'));
 
-
+ReactDOM.render(
+    <BrowserRouter>
+    <Provider store={store}>
+        <App/>
+    </Provider>
+    </BrowserRouter>,
+    document.getElementById('root'));
 
 
 // If you want your app to work offline and load faster, you can change

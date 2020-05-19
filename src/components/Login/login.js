@@ -11,7 +11,7 @@ import LoginReduxForm from "./LoginForm";
 
 const Login=(props)=>{
     const onSubmit=(data)=>{
-        props.ThunkLogin(data.email,data.password,data.rememberMe)
+        props.ThunkLogin(data.email,data.password,data.rememberMe,data.captcha)
     }
     if(props.login){
         return <Redirect to={"/profile"}/>

@@ -36,8 +36,8 @@ class Api {
         return instance.put(`/profile/status`,{status:status})
     }
 
-    static Login(email,password,rememberMe=false){
-        return instance.post(`/auth/login`,{email,password,rememberMe})
+    static Login(email,password,rememberMe=false,captcha=null){
+        return instance.post(`/auth/login`,{email,password,rememberMe,captcha})
     }
     
     static Me(){
