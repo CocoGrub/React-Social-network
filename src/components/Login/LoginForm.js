@@ -3,13 +3,13 @@ import {Field, reduxForm} from "redux-form";
 import {MaxLengthCreator, required} from "../../utils/validators/validation";
 import {Input} from "../../common/FormControls/formsControls";
 import styles from "../../common/FormControls/style.module.css";
-
+import Button from 'react-bootstrap/Button';
 const length40 = MaxLengthCreator(40)
 const length10 = MaxLengthCreator(10)
 const LoginForm = (props) => {
     return (
         <>
-            {props.captchaUrl && <img src={props.captchaUrl}></img>}
+            {props.captchaUrl && <img src={props.captchaUrl} alt={"pls w8"}></img>}
             <form onSubmit={props.handleSubmit}>
 
                 {props.captchaUrl &&
@@ -26,7 +26,7 @@ const LoginForm = (props) => {
                 </div>
                 {props.error && <div className={styles.formSummaryError}>{props.error}
                 </div>}
-                <button type={"submit"}>submit</button>
+                <Button className="btn btn-primary" type={"submit"}>submit</Button>
             </form>
         </>
     )

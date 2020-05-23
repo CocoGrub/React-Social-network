@@ -1,11 +1,10 @@
-import React, {useEffect, useRef} from "react";
+import React from "react";
 import ProfilePage from "./ProfilePage";
 
 import {ThunkSetProfile,thunkSetStatus,thunkUpdateStatus,ThunkUploadPhoto,ThunkSendBio} from '../../redux/ProfileReducer'
 import {connect} from 'react-redux'
-import {Redirect, withRouter} from "react-router-dom";
-import withAuthRedirect from '../Hoc/withRouter'
-import {compose} from "redux";
+import { withRouter} from "react-router-dom";
+
 
 class ProfileContainer extends React.Component{
 
@@ -16,7 +15,7 @@ class ProfileContainer extends React.Component{
 }
 
 componentDidUpdate(prevProps, prevState, snapshot) {
-        if(this.props.match.params.id!=prevProps.match.params.id){
+        if(this.props.match.params.id!==prevProps.match.params.id){
             this.refresh()
         }
 }

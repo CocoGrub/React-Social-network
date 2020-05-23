@@ -1,7 +1,12 @@
-import React from 'react'
+import React, {useContext} from 'react'
 import classes from './myFooter.module.css'
-export default function myFooter(){
-    return (<div className={classes.myFooter}>
-        footer here
-    </div>)
+import ColorContext from "../../App";
+function ThemedButton() {
+
+
+    return <div style={{backgroundColor:"gray"}}>
+        <span>Contact me at facebook</span>
+    </div>;
+
 }
+export default  ThemedButton

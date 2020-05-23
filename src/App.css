@@ -1,18 +1,18 @@
-.App {
-display: grid;
-grid-template-areas: 
-'header header header'
-'nav main main'
-'footer footer footer'
-}
+/*.App {*/
+/*display: grid;*/
+/*grid-template-areas: */
+/*'header header header'*/
+/*'nav main main'*/
+/*'footer footer footer'*/
+/*}*/
 
 
 
-.navigation{
-  grid-area: nav;
-  background-color: rgb(209, 175, 156);
-}
+/*.navigation{*/
+/*  grid-area: nav;*/
+/*  background-color: rgb(209, 175, 156);*/
+/*}*/
 
-a{
-  text-decoration: none;
-}
+/*a{*/
+/*  text-decoration: none;*/
+/*}*/

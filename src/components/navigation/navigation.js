@@ -4,16 +4,25 @@ import classes from './navigate.module.css'
 
 export default function navigate(props) {
 
-    return (<div className='navigation'>
-        <p><NavLink activeClassName={classes.active} to='/login'>Log in</NavLink></p>
+    return (<div className="navbar navbar-dark bg-dark">
 
-        {props.authorizedID !=null ?
-            <p><NavLink activeClassName={classes.active} to={`/profile/${props.authorizedID}`}>my page</NavLink>
-            </p> : null}
-        <p><NavLink activeClassName={classes.active} to='/myFriends'>my friends</NavLink></p>
-        <p>my photos</p>
-        <p><NavLink activeClassName={classes.active} to='/settings'>my settings</NavLink></p>
-        <p><NavLink activeClassName={classes.active} to='/dialog'>Общение</NavLink></p>
-        <p><NavLink activeClassName={classes.active} to='/profile'>profile</NavLink></p>
+        <NavLink className="nav-link" activeClassName={classes.active} to='/'>Main</NavLink>
+
+        {props.authorizedID ?
+            <NavLink className="nav-link" activeClassName={classes.active} to={'/profile/'+props.authorizedID}>My page</NavLink>
+            : null}
+        <NavLink className="nav-link" activeClassName={classes.active} to='/myFriends'>Users</NavLink>
+        <NavLink className="nav-link" activeClassName={classes.active} to='/about'>About</NavLink>
+        <NavLink  className="nav-link" activeClassName={classes.active} to='/settings'>My settings</NavLink>
+        <NavLink  className="nav-link" activeClassName={classes.active} to='/about'>Dialogs</NavLink>
+        {/*<p><NavLink activeClassName={classes.active} to='/profile'>profile</NavLink></p>*/}
+
+
+        {!props.authorizedID ? <button className="nav-link">LOG IN </button> : <>
+            <span className={"text-success"}>WELCOME COMMANDER {props.authorizedID}</span>
+            <button type="button" className="btn btn-danger" onClick={props.ThunkLogOut}>log out</button>
+        </>}
+
+
     </div>)
 }

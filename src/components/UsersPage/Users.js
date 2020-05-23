@@ -8,29 +8,35 @@ const Users = (props) => {
 
     return (
 
-        <div className={styles.CommonUserElement}>
-            <div className={styles.CommonUserElement}>
+        <div className={"jumbotron"} >
+            <div style={{textAlign:"center"}} >
             <Pagination {...props}/>
             </div>
-            {props.users.map((x, y) => {
+            <div className="row row-cols-1 row-cols-md-6 d-flex justify-content-center">
 
-                return (<div className={styles.CommonUserElement} key={y}>
-                    <img className={styles.CommonUserElement} src={ x.photos.large ||DefaultPhoto }/>
-                    <br/>
+
+                {props.users.map((x, y) => {
+
+                return (<div className="card  border-primary " style={{width:"15rem",margin:"0.5rem"}} key={y}>
+                    <img className="card-img-top"  src={ x.photos.large ||DefaultPhoto }/>
+                        <div className="card-body">
+
                     <NavLink to={`./profile/` + x.id}>
-                        <span>{x.name}</span>
+                        <h5 className="card-title">{x.name}</h5>
                     </NavLink>
-                    {x.followed ? <button disabled={props.followingInProgress.some((id) => {
+                    {x.followed ? <button className="btn btn-danger"  disabled={props.followingInProgress.some((id) => {
                         return id === x.id
                     })}
                     onClick={() => {props.unFollow(x.id)}}>
-                        unfollow</button> : <button disabled={props.followingInProgress.some((id) => {
+                        unfollow</button> : <button className="btn btn-primary" disabled={props.followingInProgress.some((id) => {
                         return id === x.id
                     })} onClick={() => {props.Follow(x.id)}}>follow</button>}
 
-
+                        </div>
                 </div>)
             })}
+
+            </div>
         </div>
     )
 };

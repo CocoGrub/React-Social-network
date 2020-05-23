@@ -6,10 +6,11 @@ import * as serviceWorker from './serviceWorker';
 import store from './redux/reduxStore'
 import {BrowserRouter} from 'react-router-dom'
 import {Provider} from 'react-redux'
-
+import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
 // setInterval(()=>{
 //      store.dispatch({type:"hello"})
 // },1000)
+
 
 ReactDOM.render(
     <BrowserRouter>
