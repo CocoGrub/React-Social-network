@@ -93,7 +93,7 @@ const ProfilePageReducer = (state = initialState, action) => {
             const myState = {...state};
             myState.posts = [...state.posts]
             myState.posts.push({
-                name: 'Valeda',
+                name: 'Valera',
                 id: 6,
                 likes: 0,
                 post: action.post

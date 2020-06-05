@@ -1,25 +1,38 @@
 const sendMessage ="SEND-MESSAGE"
 
- export const DialogActionCreator=(text)=>{ 
+type DialogActionCreatorType={
+    type:typeof sendMessage
+    message:string
+}
+ export const DialogActionCreator=(text:string):DialogActionCreatorType=>{
     
     return{type:sendMessage,message:text }
 }
-
+type NamesType={
+    id:number
+    name:string
+}
+type MessagesType={
+    id:number
+    message:string
+}
 const initialState={
     names:[
         {id:1,name:'vanya'},
         {id:2,name:'john'},
         {id:3,name:'gena'},
         {id:4,name:'GHalya'},
-        {id:5,name:'Monk'}],
+        {id:5,name:'Monk'}
+        ]as Array<NamesType>,
     messages:[
         {id:1,message:'privet',},
         {id:2,message:'how are u'},
         {id:3,message:'sobaka'},
-        {id:4,message:'cat'}],
+        {id:4,message:'cat'}
+        ] as Array<MessagesType>,
     }
-
-const MessagePageReducer = (state=initialState,action)=>{
+type initialStateType=typeof initialState
+const MessagePageReducer = (state=initialState,action:any):initialStateType=>{
 
     switch(action.type){
         case sendMessage: 
